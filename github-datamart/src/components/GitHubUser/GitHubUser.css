@@ -1,86 +1,152 @@
 .github-user-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.github-user-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.github-user-form input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0px 0px 4px;
+  transition: border-color 0.3s;
+}
+
+.github-user-form input:focus {
+  border-color: #D9643A;
+  outline: none;
+}
+
+.github-user-form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #D9643A;
+  color: white;
+  border: none;
+  border-radius: 0px 4px 4px 0px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.github-user-form button i {
+  margin: 0px 5px;
+}
+
+.github-user-form button:hover {
+  background-color: #e53d00;
+}
+
+.github-user-form button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.github-user-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.github-user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.github-user-info img {
+  border-radius: 50%;
+  margin-right: 20px;
+  width: 150px;
+  height: 150px;
+}
+
+.github-user-detalle {
+  flex: 1;
+  text-align: end;
+}
+
+.github-user-detalle h2 {
+  margin-bottom: 10px;
+}
+
+.github-user-detalle p {
+  margin: 5px 0;
+}
+
+.github-user-repos h3 {
+  margin-top: 20px;
+}
+
+.github-user-repos ul {
+  list-style: none;
+  padding: 0;
+  text-align: start;
+}
+
+.github-user-repos li {
+  margin-bottom: 10px;
+}
+
+.github-user-repos .no-descripcion {
+  font-size: 12px;
+  color: #999;
+}
+
+.github-color{
+  color: #D9643A;
+}
+
+.no-repositorios{
+  font-size: 14px;
+  color: #999;
+  text-decoration: dashed; 
+}
+
+/* Mobile */
+@media (max-width: 600px) {
   .github-user-form {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    flex-direction: row;
+    align-items: stretch;
   }
-  
-  .github-user-form input {
-    width: 70%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .github-user-form button {
-    padding: 10px 20px;
-    margin-left: 10px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .github-user-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  .github-user-card {
-    display: flex;
+
+  .github-user-info {
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
   }
-  
-  .github-user-card img {
-    border-radius: 50%;
-    margin-bottom: 20px;
-  }
-  
-  .github-user-card h2 {
+
+  .github-user-info img {
     margin-bottom: 10px;
   }
-  
-  .github-user-card p {
-    margin: 5px 0;
+
+  .github-user-detalle {
     text-align: center;
   }
-  
-  .github-user-card ul {
-    list-style: none;
-    padding: 0;
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .github-user-form input {
+    width: 75%;
   }
-  
-  .github-user-card li {
-    margin-bottom: 10px;
-    text-align: center;
+
+  .github-user-form button {
+    padding: 10px 15px;
   }
-  
-  @media (max-width: 600px) {
-    .github-user-form {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  
-    .github-user-form input {
-      margin-bottom: 10px;
-      width: 100%;
-    }
-  
-    .github-user-form button {
-      width: 100%;
-    }
-  }
-  
+}
