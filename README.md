@@ -12,6 +12,7 @@ Este proyecto es una aplicación web simple que permite a los usuarios buscar in
 - Muestra el número de seguidores y el número de repositorios públicos del usuario.
 - Muestra una lista de los repositorios más recientes del usuario, incluyendo el nombre y la descripción de cada repositorio.
 - Si el usuario no tiene ha escrito nada, muestra en el boton un pop up "Ingrese un usuario para buscar".
+- Si el usuario no existe en Github, muestra el mensaje "El usuario ingresado no existe en GitHub".
 - Si el usuario no tiene descripción del repositorio, muestra el mensaje "No hay descripción disponible".
 - Si el usuario no tiene repositorios, muestra el mensaje "No cuenta con repositorios".
 
