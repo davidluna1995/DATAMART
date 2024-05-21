@@ -5,19 +5,28 @@ const GitHubUser = () => {
   const [username, setUsername] = useState("");
   const [userData, setUserData] = useState(null);
   const [repos, setRepos] = useState([]);
+  const [userNotFound, setUserNotFound] = useState(false);
 
   const fetchGitHubUserData = async () => {
     try {
       const userResponse = await fetch(
         `https://api.github.com/users/${username}`
       );
-      const userData = await userResponse.json();
 
+      if (!userResponse.ok) {
+        setUserNotFound(true);
+        setUserData(null);
+        setRepos([]);
+        return;
+      }
+
+      const userData = await userResponse.json();
       const reposResponse = await fetch(userData.repos_url);
       const reposData = await reposResponse.json();
 
       setUserData(userData);
       setRepos(reposData);
+      setUserNotFound(false);
     } catch (error) {
       console.error("Error al obtener datos:", error);
     }
@@ -39,6 +48,7 @@ const GitHubUser = () => {
 
   return (
     <div className="github-user-container">
+
       <div className="github-user-form">
         <input
           type="text"
@@ -48,14 +58,21 @@ const GitHubUser = () => {
           onKeyDown={handleKeyPress}
           placeholder="Ingrese su usuario Github"
         />
-        <button 
-          className="btn btn-primary" 
-          onClick={handleSearch} 
+        <button
+          className="btn btn-primary"
+          onClick={handleSearch}
           disabled={!username.trim()}
-          title={!username.trim() ? 'Ingrese un usuario para buscar' : null}>
+          title={!username.trim() ? "Ingrese un usuario para buscar" : null}
+        >
           <i className="fas fa-search"></i> Buscar
         </button>
       </div>
+
+      {userNotFound && (
+        <span className="user-not-found">
+          El usuario ingresado no existe en GitHub.
+        </span>
+      )}
 
       {userData && (
         <div className="github-user-card">
@@ -65,20 +82,31 @@ const GitHubUser = () => {
               <h2>{userData.login}</h2>
               <p>{userData.bio}</p>
               <p>
-                <strong><i class="github-color fas fa-user-plus"></i> Seguidores:</strong> {userData.followers}
+                <strong>
+                  <i class="github-color fas fa-user-plus"></i> Seguidores:
+                </strong>{" "}
+                {userData.followers}
               </p>
               <p>
-                <strong><i class="github-color fab fa-github"></i> Repositorios Públicos:</strong> {userData.public_repos}
+                <strong>
+                  <i class="github-color fab fa-github"></i> Repositorios
+                  Públicos:
+                </strong>{" "}
+                {userData.public_repos}
               </p>
             </div>
           </div>
+
           <div className="github-user-repos">
             <h3>Repositorios Recientes</h3>
             {repos.length > 0 ? (
               <ul>
                 {repos.slice(0, 5).map((repo) => (
                   <li key={repo.id}>
-                    <strong><i className="github-color fas fa-code-branch"></i> {repo.name}: </strong>
+                    <strong>
+                      <i className="github-color fas fa-code-branch"></i>{" "}
+                      {repo.name}:{" "}
+                    </strong>
                     <span className={repo.description ? "" : "no-descripcion"}>
                       {repo.description || "No hay descripción disponible"}
                     </span>
@@ -89,9 +117,9 @@ const GitHubUser = () => {
               <p className="no-repositorios">No cuenta con repositorios</p>
             )}
           </div>
-
         </div>
       )}
+
     </div>
   );
 };

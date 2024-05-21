@@ -119,6 +119,11 @@
   text-decoration: dashed; 
 }
 
+.user-not-found {
+  color: #ff0000; 
+  font-style: italic;
+}
+
 /* Mobile */
 @media (max-width: 600px) {
   .github-user-form {
