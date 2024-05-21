@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './GitHubUser.css'
 
 const GitHubUser = () => {
   const [username, setUsername] = useState('');
@@ -15,6 +16,7 @@ const GitHubUser = () => {
 
       setUserData(userData);
       setRepos(reposData);
+
     } catch (error) {
       console.error('Error al obtener datos:', error);
     }
@@ -29,23 +31,25 @@ const GitHubUser = () => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={username}
-        onChange={handleInputChange}
-        placeholder="Enter GitHub username"
-      />
-      <button onClick={handleSearch}>Buscar</button>
+    <div className="github-user-container">
+      <div className="github-user-form">
+        <input
+          type="text"
+          value={username}
+          onChange={handleInputChange}
+          placeholder="Ingrese su usuario Github"
+        />
+        <button onClick={handleSearch}>Buscar</button>
+      </div>
 
       {userData && (
-        <div>
-          <h2>{userData.login}</h2>
+        <div className="github-user-card">
           <img src={userData.avatar_url} alt="Avatar" width="100" />
+          <h2>{userData.login}</h2>
           <p>{userData.bio}</p>
-          <p>Followers: {userData.followers}</p>
-          <p>Public Repositories: {userData.public_repos}</p>
-          <h3>Recent Repositories</h3>
+          <p>Seguidores: {userData.followers}</p>
+          <p>Repositorios Públicos: {userData.public_repos}</p>
+          <h3>Repositorios Recientes</h3>
           <ul>
             {repos.slice(0, 5).map((repo) => (
               <li key={repo.id}>
